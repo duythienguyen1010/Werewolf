@@ -14,10 +14,8 @@ var SOCKET_LIST = {};
  
 var io = require('socket.io')(serv,{});
 io.sockets.on('connection', function(socket){
-	socket.id = Math.random();
-	socket.x = 0;
-	socket.y = 0;
-	socket.number = "" + Math.floor(10 * Math.random());
+	socket.role = "";
+	socket.name = "";
 	SOCKET_LIST[socket.id] = socket;
  
 	socket.on('disconnect',function(){
@@ -30,17 +28,16 @@ setInterval(function(){
 	var pack = [];
 	for(var i in SOCKET_LIST){
 		var socket = SOCKET_LIST[i];
-		socket.x++;
-		socket.y++;
+		socket.role="wolf";
+		socket.name="tim";
 		pack.push({
-			x:socket.x,
-			y:socket.y,
-			number:socket.number
+			name:socket.name,
+			role:socket.role,
 		});		
 	}
 	for(var i in SOCKET_LIST){
 		var socket = SOCKET_LIST[i];
-		socket.emit('newPositions',pack);
+		socket.emit('assignRoles',pack);
 	}
  
  
