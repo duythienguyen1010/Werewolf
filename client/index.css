@@ -1,0 +1,15 @@
+html {
+    width: 100%;
+    height: auto;
+    background-color: black;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+#logo {
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    border-radius: 20%;
+}
