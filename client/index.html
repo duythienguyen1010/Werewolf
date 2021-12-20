@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
   	<title>Werewolf</title>
   	<link rel="stylesheet" href="client/index.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   	<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
   	<script src="client/js/index.js"></script>
 </head>
@@ -15,8 +16,14 @@
     	<div>
     		<img src="client/img/logo.jpg" alt="logo" id="logo">
       	</div>
-		  	<div id="buttons">
-        <input type="">
+		
+		<div>
+			<input type="text" id="name_area" placeholder="enter your name">
+		</div>
+
+		<div id="buttons">
+        	<input type="button" id="create_game_btn" value="Create Game">
+			<input type="button" id="join_game_btn" value="Join Game">
       	</div>
     </main>
 

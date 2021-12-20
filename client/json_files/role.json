@@ -1,0 +1,40 @@
+{
+    "roles" : [
+        {
+            "title":"",
+            "description":"none",
+            "image":"",
+            "abilities":"",
+            "party":""
+        },
+        {
+            "name":"",
+            "description":"",
+            "image":"",
+            "abilities":"",
+            "party":""
+        },
+        {
+            "name":"",
+            "description":"",
+            "image":"",
+            "abilities":"",
+            "party":""
+        },
+        {
+            "name":"",
+            "description":"",
+            "image":"",
+            "abilities":"",
+            "party":""
+        },
+        {
+            "name":"",
+            "description":"",
+            "image":"",
+            "abilities":"",
+            "party":""
+        }
+        
+    ]
+}
