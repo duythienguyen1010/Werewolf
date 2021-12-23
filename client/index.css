@@ -3,7 +3,7 @@ html {
     height: auto;
     background-color: black;
     background-image: url("img/back_ground.jpg");
-    background-position: center;
+    background-position: fill;
     background-size: 120%;
     background-repeat: no-repeat;
     text-align: center;

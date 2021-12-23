@@ -1,40 +1,44 @@
-{
-    "roles" : [
-        {
-            "title":"",
-            "description":"none",
-            "image":"",
-            "abilities":"",
-            "party":""
-        },
-        {
-            "name":"",
-            "description":"",
-            "image":"",
-            "abilities":"",
-            "party":""
-        },
-        {
-            "name":"",
-            "description":"",
-            "image":"",
-            "abilities":"",
-            "party":""
-        },
-        {
-            "name":"",
-            "description":"",
-            "image":"",
-            "abilities":"",
-            "party":""
-        },
-        {
-            "name":"",
-            "description":"",
-            "image":"",
-            "abilities":"",
-            "party":""
-        }
-        
-    ]
-}
+{"roles":[
+	{
+		"title": "Villager",
+		"Description": "",
+		"image": "",
+		"abilities": "none",
+        "party": "Village"
+	},
+	{
+		"title": "Werewolf",
+		"Description": "",
+		"image": "",
+		"abilities": "none",
+        "party": "Werewolf"
+	},
+	{
+		"title": "",
+		"Description": "",
+		"image": "",
+		"abilities": "",
+        "party": ""
+	},
+    {
+		"title": "",
+		"Description": "",
+		"image": "",
+		"abilities": "",
+        "party": ""
+	},
+    {
+		"title": "",
+		"Description": "",
+		"image": "",
+		"abilities": "",
+        "party": ""
+	},
+    {
+		"title": "",
+		"Description": "",
+		"image": "",
+		"abilities": "",
+        "party": ""
+	}
+]}

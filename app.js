@@ -8,12 +8,11 @@ app.get('/',function(req, res) {
 
 app.use('/client',express.static(__dirname + '/client'));
  
-serv.listen(2000);
+serv.listen(process.env.PORT || 2000);
 console.log("Server started.");
 
-var SOCKET_LIST = {};
 var PLAYER_LIST = {};
-var GAME_LIST ={};
+var GAME_LIST = {};
 
 var Player = function(id) {
 	var self = {
@@ -24,46 +23,46 @@ var Player = function(id) {
 	return self;
 }
 
+var GameMaster = function(id) {
+	var self = {
+		name:"",
+		role:"",
+		id:id,
+		player_list:{}
+	}
+	return self;
+}
+
 var io = require('socket.io')(serv,{});
 
 io.sockets.on('connection', function(socket){
 	socket.role = "";
 	socket.name = "";
 
-	SOCKET_LIST[socket.id] = socket;
-
-	var player = Player(socket.id);
-	PLAYER_LIST[socket.id] = player;
-
 	socket.on('create_game', function(data){
-		var gameMaster = Player(socket.id)
+		var gameMaster = GameMaster(socket.id)
 		gameMaster.role = data.role;
 		gameMaster.name = data.name;
 		gameMaster.id = socket.id;
 	
 		GAME_LIST[socket.id] = gameMaster;
-		PLAYER_LIST[socket.id] = gameMaster;
+		socket.emit('display_master', gameMaster);
+	})
+
+	socket.on('join_game', function(data){
+		var player = Player(socket.id)
+		player.name = data.name;
+		player.id = socket.id;
+	
+		PLAYER_LIST[socket.id] = player;
+	})
+
+	socket.on('find_room', function(data){
+		console.log(GAME_LIST);
 	})
 
 	socket.on('disconnect',function(){
-		delete SOCKET_LIST[socket.id];
 		delete PLAYER_LIST[socket.id];
 		delete GAME_LIST[socket.id];
 	});
 });
-
-setInterval (function() {
-	var pack = [];
-	for(var i in PLAYER_LIST) {
-		var player = PLAYER_LIST[i];
-		pack.push({
-			name: player.name,
-			role: player.role,
-			id: player.id,
-		});
-	}
-	for(var i in SOCKET_LIST) {
-		var socket = SOCKET_LIST[i];
-		socket.emit("lobby", pack);
-	}
-}, 2000)

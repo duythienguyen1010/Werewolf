@@ -3,6 +3,7 @@
     var socket = io();
     
     var nameVal = '';
+    var roomID = '';
 
     $("#create_game_btn").click(function(){
 
@@ -12,16 +13,15 @@
         }
         else {
             socket.emit("create_game", {role:"Game Master", name:nameVal});
-            
-            socket.on('lobby', function(data) {
-                for(var i = 0; i <data.length; i++) {
-                    $("#lobby").text("");
-                    $("#lobby").append(
-                        "<p>" + data[i].name + "</p>" +
-                        "<p>" + data[i].role + "</p>" +
-                        "<p>" + data[i].id + "</p>"
+
+            $('#screen').text('');
+
+            socket.on('display_master', function(data) {
+                    $('#screen').append(
+                        "<p>" + data.name + "</p>" +
+                        "<p>" + data.role + "</p>" +
+                        "<p>" + data.id + "</p>"
                     )
-                }
             });
 
         }
@@ -34,7 +34,19 @@
             window.alert("Please enter a valid name");
         }
         else {
+            socket.emit("join_game", {name:nameVal});
+            $('#screen').text('');
+            $('#screen').append(
+                "<input type=\"text\" id=\"room_area\" placeholder=\"enter your room id\">" +
+                "<input type=\"button\" id=\"find_room_btn\" value=\"Enter room\">"
+            )
 
+            roomID = $("#room_area").val();
+
+            $('#find_room_btn').click(function(){
+                window.alert(roomID);
+                socket.emit('find_room', roomID);
+            })
         }
     })
 
