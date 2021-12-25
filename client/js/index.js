@@ -1,9 +1,16 @@
- $(document).ready(function(){
+$(document).ready(function(){
 
     var socket = io();
     
     var nameVal = '';
     var roomID = '';
+
+    socket.on('update_lobby', function(data){
+        $('#lobby').text('');
+        for (var i = 0; i < data.length; i++){
+            $('#lobby').append(data[i].name_list);
+        }
+    })
 
     $("#create_game_btn").click(function(){
 
@@ -41,10 +48,8 @@
                 "<input type=\"button\" id=\"find_room_btn\" value=\"Enter room\">"
             )
 
-            roomID = $("#room_area").val();
-
             $('#find_room_btn').click(function(){
-                window.alert(roomID);
+                roomID = $("#room_area").val();
                 socket.emit('find_room', roomID);
             })
         }
