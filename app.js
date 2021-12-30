@@ -74,21 +74,20 @@ setInterval (function() {
     var pack = [];
     for(var i in GAME_LIST) {
         var player = GAME_LIST[i];
-		var nameList = [];
-		for(var i in player.player_list){
-			nameList.push(player.player_list[i].name);
-		}
         pack.push({
 			gameID: player.id,
-            name_list: nameList
+            name_list: player.player_list
         });
     }
     for(var i in SOCKET_LIST) {
         var socket = SOCKET_LIST[i];
 		for (i in pack){
-			console.log(GAME_LIST[socket.id])
-			if(GAME_LIST[socket.id] === pack[i].gameID) {
-				socket.emit("update_lobby", pack);
+			console.log(pack[i]);
+			if(GAME_LIST[socket.id] != undefined){
+				if(GAME_LIST[socket.id].id === pack[i].gameID) {
+					console.log("gay");
+					socket.emit("update_lobby", pack);
+				}
 			}
 		}
     }

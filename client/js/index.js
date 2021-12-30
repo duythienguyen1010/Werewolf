@@ -8,7 +8,8 @@ $(document).ready(function(){
     socket.on('update_lobby', function(data){
         $('#lobby').text('');
         for (var i = 0; i < data.length; i++){
-            $('#lobby').append(data[i].name_list);
+            for (var j in data[i].name_list);
+                $('#lobby').append(data[i].name_list[j].name + ", ");
         }
     })
 
